@@ -1,155 +1,81 @@
-<!DOCTYPE html>
-<html lang="zxx">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <link rel="icon" href="images/favicon.png">
-    <title>{{ page.title }}</title>
-
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <link rel="stylesheet" href="css/materialize.css">
-    <link rel="stylesheet" href="css/loaders.css">
-    <link rel="stylesheet" href="css/font-awesome.min.css">
-    <link rel="stylesheet" href="css/owl.carousel.min.css">
-    <link rel="stylesheet" href="css/owl.theme.default.min.css">
-    <link rel="stylesheet" href="css/style.css">
-
-</head>
-
-<body>
-
-    <!-- preloader -->
-    <div class="preloader">
-        <div class="spinner"></div>
-    </div>
-    <!-- end preloader -->
-
-    <!-- navbar -->
-    <div class="navbar">
+---
+layout: default
+---
+<!-- blog single -->
+    <div class="blog-single segments-page">
         <div class="container">
-            <div class="row">
-                <div class="col s3">
-                    <div class="content-left">
-                        <a href="#slide-out" data-activates="slide-out" class="sidebar">
-                            <i class="fa fa-bars"></i>
-                        </a>
+            <div class="contents">
+                <img src="{{ page.image }}" alt="{{ page.title | escape }}">
+                <div class="text">
+                    <h4>{{ page.title | escape }}</h4>
+                    <p class="date">
+                        <i class="fa fa-calendar"></i>{{ page.date | date: date_format }}</p>
+                    {{ content }}
+                </div>
+            </div>
+            <div class="share-button">
+                <ul>
+                    <li>
+                        <div class="fb-share-button" data-href="{{ page.url }}" data-layout="" data-size=""><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u={{ page.url }}" class="fb-xfbml-parse-ignore">Share</a></div>
+                    </li>
+                    <li>
+                        <a class="twitter-share-button"
+  href="https://twitter.com/intent/tweet">
+Tweet</a>
+                    </li>
+                    <li>
+                        <script async src="https://telegram.org/js/telegram-widget.js?22" data-telegram-share-url="{{ page.url }}" data-comment="Check this out!"></script>
+                    </li>
+                    <li>
+                        <a data-pin-do="buttonPin" href="https://www.pinterest.com/pin/create/button/?url={{ page.url }}&media={{ page.image }}&description=page.title" data-pin-shape="round">
+</a>
+                    </li>
+                </ul>
+            </div>
+            {% assign author = site.data.people[page.author] %}
+            <div class="author">
+                <div class="image">
+                    <img src="images/admin.png" alt="{{ author.twitter }}">
+                </div>
+                <div class="text">
+                    <h6>{{ author.name }}</h6>
+                    <p>{{ author.twitter }}</p>
+                    <div class="social-link">
+                        <ul>
+                            <li>
+                                <a href="">
+                                    <i class="fa fa-facebook"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="">
+                                    <i class="fa fa-twitter"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="">
+                                    <i class="fa fa-instagram"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="">
+                                    <i class="fa fa-google"></i>
+                                </a>
+                            </li>
+                        </ul>
                     </div>
                 </div>
-                <div class="col s6">
-                    <div class="content-center">
-                        <a href="index.html">
-                            <h1>M-PLAY</h1>
-                        </a>
-                    </div>
-                </div>
-                <div class="col s3">
-                    <div class="content-right">
-                        <a href="#slide-out-right" data-activates="slide-out-right" class="sidebar-search">
-                            <i class="fa fa-search"></i>
-                        </a>
-                    </div>
-                </div>
+            </div>
+            {%- endif -%}
+            <div class="blog-comment">
+                <h5>Comment</h5>
+                <div class="content">
+            <div class="comment-form">
+                <h4>Leave Your Reply</h4>
+                {%- if site.disqus.shortname -%}
+    {%- include disqus_comments.html -%}
+  {%- endif -%}
             </div>
         </div>
     </div>
-    <!-- end navbar -->
-
-    <!-- new video -->
-    <div class="new-video segments">
-        <div class="container">
-            <div class="section-title">
-            	{% for post in site.posts %}
-                <h3>New Video</h3>
-            </div>
-            <div class="row">
-                <div class="col s6">
-                    <div class="content">
-                        <a class="image" href="">
-                            <img src="images/post3.jpg" alt="">
-                            <div class="time">{{ post.date }}</div>
-                        </a>
-                        <a href="{{ post.url }}">
-                            <h5>{{ post.title }}</h5>
-                        </a>
-                        <p>
-                            <a href="">{{ post.author }}</a>
-                        </p>
-                        <p class="date">
-                            <span>22 Views</span>
-                            10 minute ago
-                        </p>
-                    </div>
-                </div>
-                {% endfor %}
-
-    <!-- trending video -->
-    <div class="new-video trending-video">
-        <div class="container">
-            <div class="section-title">
-            	{% for post in site.posts %}
-                <h3>Trending Video</h3>
-            </div>
-            <div class="row">
-                <div class="col s6">
-                    <div class="content">
-                        <a class="image" href="{{ post.url }}">
-                            <img src="{{ post.img }}" alt="{{ post.alt }}">
-                            <div class="time">{{ post.date }}</div>
-                        </a>
-                        <a href="{{ post.url }}">
-                            <h5>{{ post.title }}</h5>
-                        </a>
-                        <p>
-                            <a href="">{{ post.author }}</a>
-                        </p>
-                        <p class="date">
-                            {{ post.excerpt }}
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    {% endfor %}
-    <!-- end trending video -->
-
-    <!-- footer -->
-    <footer class="bg-second">
-        <div class="container">
-            <ul>
-                <li>
-                    <a href="">
-                        <i class="fa fa-facebook"></i>
-                    </a>
-                </li>
-                <li>
-                    <a href="">
-                        <i class="fa fa-twitter"></i>
-                    </a>
-                </li>
-                <li>
-                    <a href="">
-                        <i class="fa fa-google"></i>
-                    </a>
-                </li>
-                <li>
-                    <a href="">
-                        <i class="fa fa-instagram"></i>
-                    </a>
-                </li>
-            </ul>
-            <p>Copyright © All Right Reserved</p>
-        </div>
-    </footer>
-    <!-- end footer -->
-
-    <script src="js/jquery.min.js"></script>
-    <script src="js/materialize.js"></script>
-    <script src="js/owl.carousel.min.js"></script>
-    <script src="js/main.js"></script>
-
-</body>
-
-</html>
+    <!-- end blog single -->
