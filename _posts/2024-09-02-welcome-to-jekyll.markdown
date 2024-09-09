@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "This post demonstrates post content styles"
+image: "https://raw.githubusercontent.com/emapg/emapg.github.io/main/assets/images/openart-image_mX9p2iv-_1725885419934_raw.jpg"
 categories: junk
 author:
 - Bart Simpson
